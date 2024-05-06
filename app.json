@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "home-auto",
-    "slug": "home-auto",
+    "name": "prime-home",
+    "slug": "prime-home",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
@@ -21,10 +21,24 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "config": {
+        "networkSecurity": {
+          "clearText": [
+            "localhost",
+            "192.168.43.54"
+          ]
+        }
+      },
+      "package": "com.pitechy.primehome"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a75e6c8f-8198-4bc7-a999-4d0e55e0c501"
+      }
     }
   }
 }
