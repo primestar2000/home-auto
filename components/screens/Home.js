@@ -42,7 +42,11 @@ export default function Home({ navigation, route }) {
       try {
         const response = await fetch(`http://${networkIp}/WifiStatus`);
         const status = response.status;
-        setWifiStatus(status === 200);
+        if (status === 200) {
+          setWifiStatus(true);
+        } else {
+          setWifiStatus(false);
+        }
       } catch (error) {
         console.log(error);
         setWifiStatus(false);

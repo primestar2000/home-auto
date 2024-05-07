@@ -27,7 +27,7 @@ export default function BottomNavIconWrap({ children, isVisible }) {
     <Animated.View
       style={[
         {
-          backgroundColor: isVisible ? "#E1FEF1" : "transparent",
+          backgroundColor: isVisible ? "rgba(221, 255, 235, 1)" : "transparent",
           paddingVertical: 5,
           paddingHorizontal: 0,
           borderRadius: 50,
