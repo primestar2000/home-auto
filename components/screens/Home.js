@@ -154,57 +154,7 @@ export default function Home({ navigation, route }) {
           </Pressable>
         </Modal>
       )}
-      <View style={styles.topLayout}>
-        <View style={styles.topFirstCol}>
-          <Pressable onPress={() => navigation.navigate("profile")}>
-            <Image
-              style={styles.userImage}
-              source={require("../../assets/images/user.jpeg")}
-            />
-          </Pressable>
-          <View style={{ marginHorizontal: 10 }}>
-            <Text
-              style={[
-                styles.screenTitle,
-                { color: darkMode ? COLORS.dark.white : COLORS.SECONDARY_DARK },
-              ]}
-            >
-              Prime Home
-            </Text>
-            <Text
-              style={{
-                color: darkMode ? COLORS.dark.white : COLORS.SECONDARY_DARK,
-              }}
-            >
-              Stephen Simon
-            </Text>
-          </View>
-        </View>
-        <Pressable
-          style={styles.menuButton}
-          onPress={() => {
-            setDarkMode(!darkMode);
-          }}
-        >
-          <MaterialCommunityIcons
-            name={darkMode ? "weather-sunny" : "weather-night"}
-            size={28}
-            color={darkMode ? "orange" : COLORS.SECONDARY_DARK}
-          />
-        </Pressable>
-        <Pressable
-          style={styles.menuButton}
-          onPress={() => {
-            setMenuStatus(!menuStatus);
-          }}
-        >
-          <MaterialCommunityIcons
-            name="dots-vertical"
-            size={28}
-            color={darkMode ? "white" : COLORS.SECONDARY_DARK}
-          />
-        </Pressable>
-      </View>
+
       <ScrollView>
         <View style={styles.switchContainer}>
           <TwoWaySwitchCustom
@@ -299,39 +249,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#111827",
     position: "relative", // Ensure the mainScreen acts as a relative positioning context for absolute positioning within it
   },
-  topLayout: {
-    flexDirection: "row",
-    gap: 10,
-    alignItems: "center",
-    height: 60,
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 10,
-    position: "relative",
-    elevation: 3,
-    // borderBottomColor: "gray",
-    // borderWidth: 2,
-    shadowColor: "#1f2937",
-  },
+
   userImage: {
     width: 45,
     height: 45,
     borderRadius: 50,
   },
-  welcomeText: {
-    color: "white",
-    fontWeight: "bold",
-    fontStyle: "italic",
-    paddingHorizontal: 20,
-    padding: 10,
-  },
-  usernameText: {
-    color: "violet",
-    fontSize: 20,
-    fontWeight: "bold",
-    marginVertical: 10,
-    paddingHorizontal: 20,
-  },
+
   heroImage: {
     width: "100%",
     height: 200,
@@ -378,11 +302,7 @@ const styles = StyleSheet.create({
     fontWeight: "300",
     marginTop: 20,
   },
-  screenTitle: {
-    fontSize: 20,
-    color: "white",
-    textTransform: "uppercase",
-  },
+
   menuButton: {
     right: 0,
     paddingHorizontal: 10,

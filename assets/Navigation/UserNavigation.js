@@ -11,6 +11,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../Helper/Constant";
 import { AppContext } from "../Context/AppContext";
 import BottomNavIconWrap from "../../components/BottomNavIconWrap";
+import CustomHeader from "../../components/CustomHeader";
 
 export default function UserNavigation() {
   const { darkMode } = useContext(AppContext);
@@ -25,7 +26,11 @@ export default function UserNavigation() {
           padding: "auto",
           height: 60,
         },
-        headerShown: false,
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: darkMode ? COLORS.PRIMARY_DARK : "white",
+        },
+        headerTitleStyle: { color: darkMode ? "white" : "black " },
         tabBarLabelStyle: {
           color: COLORS.light.gray,
           fontSize: 14,
@@ -38,6 +43,9 @@ export default function UserNavigation() {
     >
       <Tab.Screen
         options={{
+          header: () => {
+            return <CustomHeader />;
+          },
           tabBarIcon: ({ color, size, focused }) => {
             return (
               <BottomNavIconWrap isVisible={focused ? true : false}>
@@ -72,6 +80,7 @@ export default function UserNavigation() {
       />
       <Tab.Screen
         options={{
+          headerShown: false,
           tabBarIcon: ({ color, size, focused }) => {
             return (
               <BottomNavIconWrap isVisible={focused ? true : false}>
