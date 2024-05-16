@@ -15,7 +15,7 @@ export default function CustomHeader() {
       ]}
     >
       <View style={styles.topFirstCol}>
-        <Pressable onPress={() => navigation.navigate("profile")}>
+        <Pressable>
           <Image
             style={styles.userImage}
             source={require("../assets/images/user.jpeg")}
@@ -55,7 +55,7 @@ export default function CustomHeader() {
           />
         )}
       </Pressable>
-      <Pressable
+      {/* <Pressable
         style={styles.menuButton}
         onPress={() => {
           setMenuStatus(!menuStatus);
@@ -66,7 +66,7 @@ export default function CustomHeader() {
           size={28}
           color={darkMode ? "white" : COLORS.dark.gray}
         />
-      </Pressable>
+      </Pressable> */}
     </View>
   );
 }
