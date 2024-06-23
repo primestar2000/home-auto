@@ -1,15 +1,25 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { Pressable, StyleSheet, Text, View, Image } from "react-native";
+import React, { useState } from "react";
 import CustomInput from "../../customInput";
 import SubmitButton from "../../SubmitButton";
 import { COLORS } from "../../../assets/Helper/Constant";
+import Loader from "../../Loader";
 
 export default function SignUp({ navigation }) {
+  const [loading, setLoading] = useState(false);
   return (
     <View style={styles.container}>
-      <Text style={styles.pageTtile}>Sign Up</Text>
+      {loading && <Loader />}
+      <View style={styles.topSection}>
+        <Image
+          style={styles.image}
+          source={require("../../../assets/images/icon.png")}
+        />
+        <Text style={styles.welcText}>Welcome to Home Auto</Text>
+        <Text style={styles.pageTtile}>Sign Up</Text>
+      </View>
       <View style={styles.form}>
-        <CustomInput placeholder="Name" />
+        {/* <CustomInput placeholder="Name" /> */}
         <CustomInput placeholder="Email" />
         <CustomInput placeholder="Password" />
         <CustomInput placeholder="Confirm Password" />
@@ -34,8 +44,20 @@ const styles = StyleSheet.create({
   },
   pageTtile: {
     fontSize: 30,
-    marginVertical: 20,
-    fontWeight: "600",
+    fontWeight: "900",
+  },
+  topSection: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  welcText: {
+    color: "green",
+    fontSize: 25,
+  },
+  image: {
+    width: 200,
+    height: 200,
   },
   form: {
     width: "100%",

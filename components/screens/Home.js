@@ -32,7 +32,7 @@ export default function Home({ navigation, route }) {
   const { networkIp } = useContext(AppContext);
   const [menuStatus, setMenuStatus] = useState(false);
   const [presentRoom, setPresentRoom] = useState(1);
-  const { darkMode, setDarkMode } = useContext(AppContext);
+  const { darkMode, setDarkMode, loggedInUser } = useContext(AppContext);
 
   // useEffect(() => {
   //   console.log(presentRoom);

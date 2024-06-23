@@ -6,7 +6,7 @@ import { Feather } from "@expo/vector-icons";
 import { AppContext } from "../assets/Context/AppContext";
 
 export default function CustomHeader() {
-  const { darkMode, setDarkMode } = useContext(AppContext);
+  const { darkMode, setDarkMode, loggedInUser } = useContext(AppContext);
   return (
     <View
       style={[
@@ -35,7 +35,7 @@ export default function CustomHeader() {
               color: darkMode ? "orange" : COLORS.dark.gray,
             }}
           >
-            Stephen Simon
+            {loggedInUser.email}
           </Text>
         </View>
       </View>

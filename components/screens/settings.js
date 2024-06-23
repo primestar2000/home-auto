@@ -21,8 +21,15 @@ export default function Settings() {
   const [inputedIpValue, setInputedIpValue] = useState("");
   const [networkIpDisplay, setNetworkIpDisplay] = useState("");
   const [selectedDevice, setSelectedDevice] = useState(null);
-  const { user, setUser, darkMode, setDarkMode, networkIp, setNetworkIp } =
-    useContext(AppContext);
+  const {
+    user,
+    setUser,
+    darkMode,
+    setDarkMode,
+    networkIp,
+    setNetworkIp,
+    signOutUser,
+  } = useContext(AppContext);
 
   // useEffect(() => {
   //   console.log(inputedIpValue);
@@ -89,14 +96,13 @@ export default function Settings() {
         <SettingsCard title={"Add Device Endpoint"}>
           <View style={Styles.formWrap}>
             <SettingsInput placeholder={"Title"} />
-            <SelectComponent title={"Select Endpoint"} value={selectedDevice}  >
+            <SelectComponent title={"Select Endpoint"} value={selectedDevice}>
               {DeviceEndpoint.map((device) => {
                 return (
                   <SelectItem
                     onPress={() => {
                       console.log(device.endpoint);
                       setSelectedDevice(device.endpoint);
-                      
                     }}
                     key={device.id}
                   >
@@ -110,7 +116,7 @@ export default function Settings() {
         <Button
           title="Log out"
           onPress={() => {
-            console.log(darkMode);
+            signOutUser();
           }}
         />
       </View>
