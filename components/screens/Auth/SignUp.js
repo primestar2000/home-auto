@@ -1,12 +1,49 @@
-import { Pressable, StyleSheet, Text, View, Image } from "react-native";
-import React, { useState } from "react";
+import { Pressable, StyleSheet, Text, View, Image, Alert } from "react-native";
+import React, { useEffect, useState } from "react";
 import CustomInput from "../../customInput";
 import SubmitButton from "../../SubmitButton";
 import { COLORS } from "../../../assets/Helper/Constant";
 import Loader from "../../Loader";
+import { passwordConfirmed } from "../../../assets/Helper/helperFunction";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  EmailAuthCredential,
+  updateCurrentUser,
+  updateProfile,
+} from "firebase/auth";
 
 export default function SignUp({ navigation }) {
   const [loading, setLoading] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmationPassword, setConfirmationPassword] = useState("");
+
+  useEffect(() => {
+    console.log(email, password);
+  }, [email, password, confirmationPassword]);
+  const createNewUser = async () => {
+    //verify password confirmed
+    if (await passwordConfirmed(password, confirmationPassword)) {
+      setLoading(true);
+      createUserWithEmailAndPassword(getAuth(), email, password)
+        .then((userCredential) => {
+          return updateProfile(getAuth().currentUser, {
+            displayName: userName,
+          });
+        })
+        .then(() => {
+          console.log("profile updated");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      Alert.alert("password doesnt match");
+    }
+  };
+
   return (
     <View style={styles.container}>
       {loading && <Loader />}
@@ -20,10 +57,35 @@ export default function SignUp({ navigation }) {
       </View>
       <View style={styles.form}>
         {/* <CustomInput placeholder="Name" /> */}
-        <CustomInput placeholder="Email" />
-        <CustomInput placeholder="Password" />
-        <CustomInput placeholder="Confirm Password" />
-        <SubmitButton />
+        <CustomInput
+          placeholder="Username"
+          onChangeText={(text) => {
+            setUserName(text);
+          }}
+        />
+        <CustomInput
+          placeholder="Email"
+          onChangeText={(text) => {
+            setEmail(text);
+          }}
+        />
+        <CustomInput
+          placeholder="Password"
+          onChangeText={(text) => {
+            setPassword(text);
+          }}
+        />
+        <CustomInput
+          placeholder="Confirm Password"
+          onChangeText={(text) => {
+            setConfirmationPassword(text);
+          }}
+        />
+        <SubmitButton
+          onPress={() => {
+            createNewUser();
+          }}
+        />
         <Pressable
           onPress={() => {
             navigation.navigate("Login");
@@ -47,7 +109,6 @@ const styles = StyleSheet.create({
     fontWeight: "900",
   },
   topSection: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },

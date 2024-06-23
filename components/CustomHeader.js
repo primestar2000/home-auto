@@ -7,6 +7,17 @@ import { AppContext } from "../assets/Context/AppContext";
 
 export default function CustomHeader() {
   const { darkMode, setDarkMode, loggedInUser } = useContext(AppContext);
+
+  const altUserImage = require("../assets/images/altUserImage.png");
+  const appOwnerImage = require("../assets/images/user.jpeg");
+  let userImage;
+  if (loggedInUser.photoURL) {
+    userImage = loggedInUser.photoURL;
+  } else if (loggedInUser.email == "primestar2000@gmail.com") {
+    userImage = appOwnerImage;
+  } else {
+    userImage = altUserImage;
+  }
   return (
     <View
       style={[
@@ -16,10 +27,7 @@ export default function CustomHeader() {
     >
       <View style={styles.topFirstCol}>
         <Pressable>
-          <Image
-            style={styles.userImage}
-            source={require("../assets/images/user.jpeg")}
-          />
+          <Image style={styles.userImage} source={userImage} />
         </Pressable>
         <View style={{ marginHorizontal: 10 }}>
           <Text
@@ -32,10 +40,12 @@ export default function CustomHeader() {
           </Text>
           <Text
             style={{
-              color: darkMode ? "orange" : COLORS.dark.gray,
+              color: "orange",
             }}
           >
-            {loggedInUser.email}
+            {loggedInUser.displayName
+              ? loggedInUser.displayName
+              : loggedInUser.email}
           </Text>
         </View>
       </View>
